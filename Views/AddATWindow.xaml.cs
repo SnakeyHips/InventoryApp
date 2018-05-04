@@ -71,7 +71,6 @@ namespace InventoryApp.Views
                 };
                 CollectionManager.Add(CollectionManager.ATInventoryName, temp);
                 ATViewModel.Inventory.Add(temp);
-                ATViewModel.InventoryStock.Add(temp);
                 ATViewModel.UpdateStock(temp.Name, temp.Quantity);
                 this.Close();
             }
