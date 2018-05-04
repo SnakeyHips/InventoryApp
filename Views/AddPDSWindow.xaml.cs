@@ -71,7 +71,6 @@ namespace InventoryApp.Views
                 };
                 CollectionManager.Add(CollectionManager.PDSInventoryName, temp);
                 PDSViewModel.Inventory.Add(temp);
-                PDSViewModel.InventoryStock.Add(temp);
                 PDSViewModel.UpdateStock(temp.Name, temp.Quantity);
                 this.Close();
             }
