@@ -71,7 +71,6 @@ namespace InventoryApp.Views
                 };
                 CollectionManager.Add(CollectionManager.WTAILInventoryName, temp);
                 WTAILViewModel.Inventory.Add(temp);
-                WTAILViewModel.InventoryStock.Add(temp);
                 WTAILViewModel.UpdateStock(temp.Name, temp.Quantity);
                 this.Close();
             }
