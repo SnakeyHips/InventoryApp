@@ -1,0 +1,42 @@
+﻿<Controls:MetroWindow x:Class="InventoryApp.Views.UpdateWTAILWindow"
+        xmlns:Controls="clr-namespace:MahApps.Metro.Controls;assembly=MahApps.Metro"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        mc:Ignorable="d"
+        GlowBrush="{DynamicResource AccentColorBrush}"
+        WindowStartupLocation="CenterScreen"
+        Title="Update WTAIL Reagent" Height="375" Width="350">
+    <Grid Margin="15,15,15,15">
+        <Label Content="Reagent:" HorizontalAlignment="Left" Margin="0,0,0,0" VerticalAlignment="Top" FontWeight="Bold"/>
+        <TextBox Name="txtReagent" HorizontalAlignment="Right" Height="23" Margin="0,0,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="225" IsUndoEnabled="False" IsEnabled="False"/>
+        <Label Content="Supplier: " HorizontalAlignment="Left" Margin="0,40,0,0" VerticalAlignment="Top" FontWeight="Bold"/>
+        <TextBox Name="txtSupplier" HorizontalAlignment="Right" Height="23" Margin="0,40,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="225" IsUndoEnabled="False" IsEnabled="False"/>
+        <Label Content="Batch: " HorizontalAlignment="Left" Margin="0,80,0,0" VerticalAlignment="Top" FontWeight="Bold"/>
+        <TextBox Name="txtBatch" HorizontalAlignment="Right" Height="23" Margin="0,80,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="225" IsUndoEnabled="False" IsEnabled="False"/>
+        <Label Content="Validation 1: " HorizontalAlignment="Left" Margin="0,120,0,0" VerticalAlignment="Top" FontWeight="Bold"/>
+        <ComboBox Name="cboValidate1" HorizontalAlignment="Right" Height="23" Margin="0,120,0,0" VerticalAlignment="Top" Width="225" SelectedIndex="0" BorderBrush="{DynamicResource AccentColorBrush}"/>
+        <Label Content="Validation 2: " HorizontalAlignment="Left" Margin="0,160,0,0" VerticalAlignment="Top" FontWeight="Bold"/>
+        <ComboBox Name="cboValidate2" HorizontalAlignment="Right" Height="23" Margin="0,160,0,0" VerticalAlignment="Top" Width="225" SelectedIndex="0" BorderBrush="{DynamicResource AccentColorBrush}"/>
+        <Label Content="Expiry: " HorizontalAlignment="Left" Margin="0,200,0,0" VerticalAlignment="Top" FontWeight="Bold"/>
+        <DatePicker Name="dateExpiry" HorizontalAlignment="Right" Height="23" Margin="0,200,0,0" VerticalAlignment="Top" Width="225" BorderBrush="{DynamicResource AccentColorBrush}"/>
+        <Label Content="Quantity: " HorizontalAlignment="Left" Margin="0,240,0,0" VerticalAlignment="Top" FontWeight="Bold"/>
+        <TextBox Name="txtQuantity" HorizontalAlignment="Right" Height="23" Margin="0,240,0,0" TextWrapping="Wrap" Text="" MaxLength="3" TextAlignment="Right" VerticalAlignment="Top" Width="225" IsUndoEnabled="False" PreviewTextInput="NumberValidationTextBox" BorderBrush="{DynamicResource AccentColorBrush}"/>
+        <Button Content="Update" HorizontalAlignment="Left" Margin="0,0,0,0" VerticalAlignment="Bottom" Width="75" Click="btnUpdateReagent_Click" IsDefault="True"/>
+        <Button Content="Cancel" HorizontalAlignment="Right" Margin="0,0,0,0" VerticalAlignment="Bottom" Width="75" Click="btnCancelReagent_Click" IsCancel="True"/>
+        <Viewbox VerticalAlignment="Bottom" Height="27" Margin="0,0,0,-27">
+            <Path Data="F 1 M 795,3551 C 494,3480 244,3285 110,3015 -29,2737 -36,2382 90,2102 157,1955 216,1882 877,1127 1544,366 1861,
+                10 1874,10 1881,10 1932,60 1986,122 2041,184 2224,392 2393,585 2563,777 2705,936 2708,937 2712,939 2899,730 3124,475
+                3381,183 3540,10 3549,12 3566,15 3709,176 4414,980 4957,1600 5162,1837 5217,1910 5308,2032 5379,2195 5405,2347 5422,
+                2446 5424,2616 5410,2710 5343,3129 5033,3459 4622,3550 4557,3565 4495,3570 4379,3570 4189,3570 4083,3547 3927,3472
+                3803,3412 3719,3351 3621,3249 L 3546,3172 3476,3247 C 3382,3348 3296,3412 3175,3470 3023,3544 2946,3562 2750,3568
+                2527,3574 2419,3554 2255,3475 2141,3420 2061,3362 1964,3265 L 1873,3174 1794,3255 C 1662,3391 1512,3482 1334,3536
+                1253,3561 1228,3564 1060,3566 907,3569 861,3566 795,3551 Z M 4595,3275 C 4860,3202 5050,3008 5121,2739 5150,2629
+                5152,2456 5126,2355 5100,2251 5030,2115 4957,2025 4871,1919 4559,1561 4002,927 3644,520 3544,411 3535,422 3530,430 
+                3395,584 3235,765 3076,946 2933,1108 2919,1124 L 2893,1154 2995,1269 C 3247,1556 3507,1861 3553,1925 3733,2178 3792,
+                2504 3714,2812 3706,2844 3697,2876 3694,2883 3687,2901 3815,3066 3876,3117 3977,3200 4098,3260 4220,3286 4304,3303
+                4513,3297 4595,3275 Z" Fill="{DynamicResource AccentColorBrush}" RenderTransform="1,0,0,-1,0,0"/>
+        </Viewbox>
+    </Grid>
+</Controls:MetroWindow>
