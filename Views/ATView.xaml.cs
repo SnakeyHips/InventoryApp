@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.IO;
 using System.Linq;
 using System.Threading.Tasks;
@@ -39,14 +39,19 @@ namespace InventoryApp.Views
         {
             AddATWindow addATWindow = new AddATWindow();
             addATWindow.Owner = mainWindow;
-            addATWindow.Show();
+            addATWindow.ShowDialog();
+            if(addATWindow.DialogResult == true)
+            {
+                lstStock.UnselectAll();
+                lstStock.SelectedValue = addATWindow.cboReagents.Text;
+            }
         }
 
         private void btnUpdate_Click(object sender, RoutedEventArgs e)
         {
             UpdateATWindow updateATWindow = new UpdateATWindow(ATViewModel.SelectedInventory);
             updateATWindow.Owner = mainWindow;
-            updateATWindow.Show();
+            updateATWindow.ShowDialog();
         }
 
         private async void btnDelete_Click(object sender, RoutedEventArgs e)
@@ -70,7 +75,7 @@ namespace InventoryApp.Views
         {
             ArchiveATWindow archiveATWindow = new ArchiveATWindow();
             archiveATWindow.Owner = mainWindow;
-            archiveATWindow.Show();
+            archiveATWindow.ShowDialog();
         }
 
         private async void btnReport_Click(object sender, RoutedEventArgs e)
