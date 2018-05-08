@@ -1,4 +1,5 @@
-﻿using System;
+using System;
+using System.Linq;
 using System.Windows;
 using System.Windows.Input;
 using MahApps.Metro.Controls;
@@ -6,11 +7,14 @@ using System.Text.RegularExpressions;
 using MahApps.Metro.Controls.Dialogs;
 using InventoryApp.Model;
 using InventoryApp.ViewModel;
+using System.Windows.Controls;
 
 namespace InventoryApp.Views
 {
     public partial class AddATWindow : MetroWindow
     {
+        MetroWindow mainWindow = (Application.Current.MainWindow as MetroWindow);
+
         public AddATWindow()
         {
             InitializeComponent();
@@ -70,9 +74,9 @@ namespace InventoryApp.Views
                     DateWarning = ATViewModel.CheckExpiryDate(dateExpiry.Text)
                 };
                 CollectionManager.Add(CollectionManager.ATInventoryName, temp);
-                ATViewModel.Inventory.Add(temp);
+                ATViewModel.Inventory.Add(temp);             
                 ATViewModel.UpdateStock(temp.Name, temp.Quantity);
-                this.Close();
+                this.DialogResult = true;
             }
         }
 
@@ -87,7 +91,7 @@ namespace InventoryApp.Views
 
         private void btnCancelReagent_Click(object sender, RoutedEventArgs e)
         {
-            this.Close();
+            this.DialogResult = false;
         }
 
         /*example scan method if scanner feature implemented
