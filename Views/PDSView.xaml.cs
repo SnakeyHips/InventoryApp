@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.IO;
 using System.Linq;
 using System.Threading.Tasks;
@@ -38,14 +38,19 @@ namespace InventoryApp.Views
         {
             AddPDSWindow addPDSWindow = new AddPDSWindow();
             addPDSWindow.Owner = mainWindow;
-            addPDSWindow.Show();
+            addPDSWindow.ShowDialog();
+            if (addPDSWindow.DialogResult == true)
+            {
+                lstStock.UnselectAll();
+                lstStock.SelectedValue = addPDSWindow.cboReagents.Text;
+            }
         }
 
         private void btnUpdate_Click(object sender, RoutedEventArgs e)
         {
             UpdatePDSWindow updatePDSWindow = new UpdatePDSWindow(PDSViewModel.SelectedInventory);
             updatePDSWindow.Owner = mainWindow;
-            updatePDSWindow.Show();
+            updatePDSWindow.ShowDialog();
         }
 
         private async void btnDelete_Click(object sender, RoutedEventArgs e)
@@ -69,7 +74,7 @@ namespace InventoryApp.Views
         {
             ArchivePDSWindow archivePDSWindow = new ArchivePDSWindow();
             archivePDSWindow.Owner = mainWindow;
-            archivePDSWindow.Show();
+            archivePDSWindow.ShowDialog();
         }
 
         private async void btnReport_Click(object sender, RoutedEventArgs e)
