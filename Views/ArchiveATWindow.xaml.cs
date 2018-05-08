@@ -1,4 +1,4 @@
-﻿using System.Windows;
+using System.Windows;
 using MahApps.Metro.Controls;
 using MahApps.Metro.Controls.Dialogs;
 using InventoryApp.Model;
@@ -50,7 +50,7 @@ namespace InventoryApp.Views
 
         private void btnClose_Click(object sender, RoutedEventArgs e)
         {
-            this.Close();
+            this.DialogResult = false;
         }
     }
 }
