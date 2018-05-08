@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Windows;
 using System.Windows.Input;
 using MahApps.Metro.Controls;
@@ -72,7 +72,7 @@ namespace InventoryApp.Views
                 CollectionManager.Add(CollectionManager.WTAILInventoryName, temp);
                 WTAILViewModel.Inventory.Add(temp);
                 WTAILViewModel.UpdateStock(temp.Name, temp.Quantity);
-                this.Close();
+                this.DialogResult = true;
             }
         }
 
@@ -87,7 +87,7 @@ namespace InventoryApp.Views
 
         private void btnCancelReagent_Click(object sender, RoutedEventArgs e)
         {
-            this.Close();
+            this.DialogResult = false;
         }
 
         /*example scan method if scanner feature implemented
