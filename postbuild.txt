@@ -1,0 +1,3 @@
+; Move all assemblies and related files to lib folder
+ROBOCOPY "$(TargetDir) " "$(TargetDir)lib\ " /XF *.exe *.config *.manifest *.mdf *.ldf /XD lib logs data Templates /E /IS /MOVE
+if %errorlevel% leq 4 exit 0 else exit %errorlevel%
