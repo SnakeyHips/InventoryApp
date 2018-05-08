@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.IO;
 using System.Linq;
 using System.Threading.Tasks;
@@ -39,14 +39,19 @@ namespace InventoryApp.Views
         {
             AddWTAILWindow addWTAILWindow = new AddWTAILWindow();
             addWTAILWindow.Owner = mainWindow;
-            addWTAILWindow.Show();
+            addWTAILWindow.ShowDialog();
+            if (addWTAILWindow.DialogResult == true)
+            {
+                lstStock.UnselectAll();
+                lstStock.SelectedValue = addWTAILWindow.cboReagents.Text;
+            }
         }
 
         private void btnUpdate_Click(object sender, RoutedEventArgs e)
         {
             UpdateWTAILWindow updateWTAILWindow = new UpdateWTAILWindow(WTAILViewModel.SelectedInventory);
             updateWTAILWindow.Owner = mainWindow;
-            updateWTAILWindow.Show();
+            updateWTAILWindow.ShowDialog();
         }
 
         private async void btnDelete_Click(object sender, RoutedEventArgs e)
@@ -70,7 +75,7 @@ namespace InventoryApp.Views
         {
             ArchiveWTAILWindow archiveWTAILWindow = new ArchiveWTAILWindow();
             archiveWTAILWindow.Owner = mainWindow;
-            archiveWTAILWindow.Show();
+            archiveWTAILWindow.ShowDialog();
         }
 
         private async void btnReport_Click(object sender, RoutedEventArgs e)
