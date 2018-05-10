@@ -114,8 +114,8 @@ namespace InventoryApp.Views
                 Font bold = FontFactory.GetFont(FontFactory.HELVETICA_BOLD);
 
                 //Column titles with bold text for stock table
-                stockTable.AddCell(new Phrase(new Chunk("Reagent", bold)));
-                stockTable.AddCell(new Phrase(new Chunk("Quantity", bold)));
+                stockTable.AddCell(new Paragraph("Reagent", bold));
+                stockTable.AddCell(new Paragraph("Quantity", bold));
                 foreach (Stock s in PDSViewModel.Stocks)
                 {
                     stockTable.AddCell(s.Name);
@@ -131,11 +131,11 @@ namespace InventoryApp.Views
                 expiryTable.SpacingAfter = 10f;
 
                 //Column titles with bold text for expiry table
-                expiryTable.AddCell(new Phrase(new Chunk("Reagent", bold)));
-                expiryTable.AddCell(new Phrase(new Chunk("Supplier", bold)));
-                expiryTable.AddCell(new Phrase(new Chunk("Batch", bold)));
-                expiryTable.AddCell(new Phrase(new Chunk("Expiry", bold)));
-                expiryTable.AddCell(new Phrase(new Chunk("Quantity", bold)));
+                expiryTable.AddCell(new Paragraph("Reagent", bold));
+                expiryTable.AddCell(new Paragraph("Supplier", bold));
+                expiryTable.AddCell(new Paragraph("Batch", bold));
+                expiryTable.AddCell(new Paragraph("Expiry", bold));
+                expiryTable.AddCell(new Paragraph("Quantity", bold));
 
                 //Change OrderBy to what you wish. Name is default atm
                 PDSViewModel.Inventory.Where(x => x.DateWarning > 0).OrderBy(x => x.Name).ToList().ForEach(x =>
@@ -148,7 +148,7 @@ namespace InventoryApp.Views
                 });
 
                 //Title used with date and time when created
-                Paragraph titleParagraph = new Paragraph(new Phrase(new Chunk("Reagent Inventory Report: " + DateTime.Now, bold)));
+                Paragraph titleParagraph = new Paragraph("PDS Inventory Report: " + DateTime.Now, bold);
                 titleParagraph.Alignment = Element.ALIGN_CENTER;
 
                 //Creates and adds everything to pdf output
