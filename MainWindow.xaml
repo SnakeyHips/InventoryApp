@@ -10,15 +10,15 @@
         WindowStartupLocation="CenterScreen"
         Title="Reagent Inventory" Height="500" Width="945">
     <Grid Margin="15,0,15,15">
-        <TabControl SelectionChanged="TabControl_SelectionChanged">
-        <TabItem Name="tabAT" Header="AT">
-            <views:ATView x:Name="ATViewControl"/>
+        <TabControl Name="tabsMain" SelectionChanged="TabControl_SelectionChanged" Padding="0">
+        <TabItem Header="AT">
+            <views:ATView/>
         </TabItem>
-            <TabItem Name="tabPDS" Header="PDS">
-                <views:PDSView x:Name="PDSViewControl"/>
+            <TabItem Header="PDS">
+                <views:PDSView/>
             </TabItem>
-            <TabItem Name="tabWTAIL" Header="WTAIL">
-                <views:WTAILView x:Name="WTAILViewControl"/>
+            <TabItem Header="WTAIL">
+                <views:WTAILView/>
             </TabItem>
         </TabControl>
         <Viewbox HorizontalAlignment="Right" VerticalAlignment="Top" Width="75" Margin="0,90,0,0">
