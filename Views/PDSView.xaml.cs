@@ -12,6 +12,7 @@ using MahApps.Metro.Controls;
 using MahApps.Metro.Controls.Dialogs;
 using iTextSharp.text;
 using iTextSharp.text.pdf;
+
 namespace InventoryApp.Views
 {
     public partial class PDSView : UserControl
@@ -21,16 +22,17 @@ namespace InventoryApp.Views
         public PDSView()
         {
             InitializeComponent();
-            this.DataContext = new PDSViewModel();
+            if (!System.ComponentModel.DesignerProperties.GetIsInDesignMode(this))
+            {
+                this.DataContext = new PDSViewModel();
+            }
         }
 
         private void lstStock_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            if (lstStock.SelectedItem != null)
+            if (PDSViewModel.SelectedStock != null)
             {
-                PDSViewModel.InventoryStock = new ObservableCollection<Reagent>(
-                    PDSViewModel.Inventory.Where(x => x.Name.Equals(PDSViewModel.SelectedStock.Name)).ToList());
-                lstInventory.ItemsSource = PDSViewModel.InventoryStock;
+                PDSViewModel.LoadInventoryStock();
             }
         }
 
@@ -62,7 +64,7 @@ namespace InventoryApp.Views
                             MessageDialogStyle.AffirmativeAndNegative);
                 if (choice == MessageDialogResult.Affirmative)
                 {
-                    CollectionManager.Delete(CollectionManager.PDSInventoryName, PDSViewModel.SelectedInventory);
+                    PDSViewModel.Delete(PDSViewModel.PDSInventoryName, PDSViewModel.SelectedInventory);
                     PDSViewModel.Inventory.Remove(PDSViewModel.SelectedInventory);
                     PDSViewModel.InventoryStock.Remove(PDSViewModel.SelectedInventory);
                     PDSViewModel.LoadStock();
