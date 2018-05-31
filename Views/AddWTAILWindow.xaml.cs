@@ -69,7 +69,7 @@ namespace InventoryApp.Views
                     Quantity = int.Parse(txtQuantity.Text),
                     DateWarning = WTAILViewModel.CheckExpiryDate(dateExpiry.Text)
                 };
-                CollectionManager.Add(CollectionManager.WTAILInventoryName, temp);
+                WTAILViewModel.Add(WTAILViewModel.WTAILInventoryName, temp);
                 WTAILViewModel.Inventory.Add(temp);
                 WTAILViewModel.UpdateStock(temp.Name, temp.Quantity);
                 this.DialogResult = true;
