@@ -42,7 +42,7 @@ namespace InventoryApp.Views
                 {
                     //Deletes foreverrr mwahahahaha
                     Reagent selected = (Reagent)lstArchive.SelectedItem;
-                    CollectionManager.Delete(CollectionManager.WTAILArchiveName, selected);
+                    WTAILViewModel.Delete(WTAILViewModel.WTAILArchiveName, selected);
                     WTAILViewModel.Archive.Remove(selected);
                 }
             }
