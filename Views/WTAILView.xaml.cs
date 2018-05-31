@@ -22,16 +22,17 @@ namespace InventoryApp.Views
         public WTAILView()
         {
             InitializeComponent();
-            this.DataContext = new WTAILViewModel();
+            if (!System.ComponentModel.DesignerProperties.GetIsInDesignMode(this))
+            {
+                this.DataContext = new WTAILViewModel();
+            }
         }
 
         private void lstStock_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            if (lstStock.SelectedItem != null)
+            if (WTAILViewModel.SelectedStock != null)
             {
-                WTAILViewModel.InventoryStock = new ObservableCollection<Reagent>(
-                    WTAILViewModel.Inventory.Where(x => x.Name.Equals(WTAILViewModel.SelectedStock.Name)).ToList());
-                lstInventory.ItemsSource = WTAILViewModel.InventoryStock;
+                WTAILViewModel.LoadInventoryStock();
             }
         }
 
@@ -63,7 +64,7 @@ namespace InventoryApp.Views
                             MessageDialogStyle.AffirmativeAndNegative);
                 if (choice == MessageDialogResult.Affirmative)
                 {
-                    CollectionManager.Delete(CollectionManager.WTAILInventoryName, WTAILViewModel.SelectedInventory);
+                    WTAILViewModel.Delete(WTAILViewModel.WTAILInventoryName, WTAILViewModel.SelectedInventory);
                     WTAILViewModel.Inventory.Remove(WTAILViewModel.SelectedInventory);
                     WTAILViewModel.InventoryStock.Remove(WTAILViewModel.SelectedInventory);
                     WTAILViewModel.LoadStock();
