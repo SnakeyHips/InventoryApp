@@ -6,9 +6,7 @@
              mc:Ignorable="d" 
              d:DesignHeight="500" d:DesignWidth="945">
     <Grid>
-        <ListView Name="lstStock" HorizontalAlignment="Left" Width="200" Margin="0,0,0,0" BorderThickness="1" BorderBrush="{DynamicResource AccentColorBrush}"
-                  ScrollViewer.HorizontalScrollBarVisibility="Hidden" SelectionMode="Single" ItemsSource="{Binding Stocks}" SelectedItem="{Binding SelectedStock}"
-                  SelectionChanged="lstStock_SelectionChanged">
+        <ListView Name="lstStock" HorizontalAlignment="Left" Width="200" Margin="0,0,0,0" BorderThickness="1" ScrollViewer.HorizontalScrollBarVisibility="Hidden" SelectionMode="Single" ItemsSource="{Binding Stocks}" SelectedItem="{Binding SelectedStock}" SelectedValuePath="Name" SelectionChanged="lstStock_SelectionChanged" Style="{DynamicResource JakeListView}">
             <ListView.View>
                 <GridView>
                     <GridViewColumn Header="Reagent" Width="100" DisplayMemberBinding="{Binding Name}"/>
