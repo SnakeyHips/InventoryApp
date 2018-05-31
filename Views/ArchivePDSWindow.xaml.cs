@@ -42,7 +42,7 @@ namespace InventoryApp.Views
                 {
                     //Deletes foreverrr mwahahahaha
                     Reagent selected = (Reagent)lstArchive.SelectedItem;
-                    CollectionManager.Delete(CollectionManager.PDSArchiveName, selected);
+                    PDSViewModel.Delete(PDSViewModel.PDSArchiveName, selected);
                     PDSViewModel.Archive.Remove(selected);
                 }
             }
