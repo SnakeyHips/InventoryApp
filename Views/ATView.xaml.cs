@@ -4,7 +4,6 @@ using System.Linq;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
-using System.Collections.ObjectModel;
 using Microsoft.Win32;
 using InventoryApp.Model;
 using InventoryApp.ViewModel;
@@ -22,16 +21,17 @@ namespace InventoryApp.Views
         public ATView()
         {
             InitializeComponent();
-            this.DataContext = new ATViewModel();
+            if (!System.ComponentModel.DesignerProperties.GetIsInDesignMode(this))
+            {
+                this.DataContext = new ATViewModel();
+            }
         }
 
         private void lstStock_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            if (lstStock.SelectedItem != null)
+            if (ATViewModel.SelectedStock != null)
             {
-                ATViewModel.InventoryStock = new ObservableCollection<Reagent>(
-                    ATViewModel.Inventory.Where(x => x.Name.Equals(ATViewModel.SelectedStock.Name)).ToList());
-                lstInventory.ItemsSource = ATViewModel.InventoryStock;
+                ATViewModel.LoadInventoryStock();
             }
         }
 
@@ -63,7 +63,7 @@ namespace InventoryApp.Views
                             MessageDialogStyle.AffirmativeAndNegative);
                 if (choice == MessageDialogResult.Affirmative)
                 {
-                    CollectionManager.Delete(CollectionManager.ATInventoryName, ATViewModel.SelectedInventory);
+                    ATViewModel.Delete(ATViewModel.ATInventoryName, ATViewModel.SelectedInventory);
                     ATViewModel.Inventory.Remove(ATViewModel.SelectedInventory);
                     ATViewModel.InventoryStock.Remove(ATViewModel.SelectedInventory);
                     ATViewModel.LoadStock();
