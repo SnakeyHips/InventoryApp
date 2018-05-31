@@ -73,7 +73,7 @@ namespace InventoryApp.Views
                     Quantity = int.Parse(txtQuantity.Text),
                     DateWarning = ATViewModel.CheckExpiryDate(dateExpiry.Text)
                 };
-                CollectionManager.Add(CollectionManager.ATInventoryName, temp);
+                ATViewModel.Add(ATViewModel.ATInventoryName, temp);
                 ATViewModel.Inventory.Add(temp);             
                 ATViewModel.UpdateStock(temp.Name, temp.Quantity);
                 this.DialogResult = true;
