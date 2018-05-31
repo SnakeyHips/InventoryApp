@@ -69,7 +69,7 @@ namespace InventoryApp.Views
                     Quantity = int.Parse(txtQuantity.Text),
                     DateWarning = PDSViewModel.CheckExpiryDate(dateExpiry.Text)
                 };
-                CollectionManager.Add(CollectionManager.PDSInventoryName, temp);
+                PDSViewModel.Add(PDSViewModel.PDSInventoryName, temp);
                 PDSViewModel.Inventory.Add(temp);
                 PDSViewModel.UpdateStock(temp.Name, temp.Quantity);
                 this.DialogResult = true;
