@@ -14,6 +14,13 @@
 				<ResourceDictionary Source="pack://application:,,,/MahApps.Metro;component/Styles/Accents/Crimson.xaml" />
 				<ResourceDictionary Source="pack://application:,,,/MahApps.Metro;component/Styles/Accents/BaseLight.xaml" />
 			</ResourceDictionary.MergedDictionaries>
+		<Style x:Key="JakeListView" BasedOn="{StaticResource MetroListView}" TargetType="{x:Type ListView}">
+                <Setter Property="BorderBrush" Value="{DynamicResource AccentColorBrush}" />
+                <Setter Property="ScrollViewer.CanContentScroll" Value="True" />
+                <Setter Property="ScrollViewer.IsDeferredScrollingEnabled" Value="False" />
+                <Setter Property="VirtualizingStackPanel.IsVirtualizing" Value="True" />
+                <Setter Property="VirtualizingStackPanel.VirtualizationMode" Value="Recycling" />
+            	</Style>
 		</ResourceDictionary>
     </Application.Resources>
 </Application>
