@@ -73,7 +73,7 @@ namespace InventoryApp.Views
                 Selected.Quantity = int.Parse(txtQuantity.Text);
                 Selected.DateWarning = ATViewModel.CheckExpiryDate(Selected.Expiry);
                 //Update with new object using copy method
-                CollectionManager.Update(CollectionManager.ATInventoryName, Selected);
+                ATViewModel.Update(ATViewModel.ATInventoryName, Selected);
                 after = int.Parse(txtQuantity.Text);
                 int difference = before - after;
                 ATViewModel.UpdateStock(Selected.Name, -difference);
@@ -87,7 +87,7 @@ namespace InventoryApp.Views
                         Reagent temp = ATViewModel.Archive.First(
                             x => x.Name == Selected.Name && x.Supplier == Selected.Supplier && x.Batch == Selected.Batch);
                         temp.Quantity += difference;
-                        CollectionManager.Update(CollectionManager.ATArchiveName, temp);
+                        ATViewModel.Update(ATViewModel.ATArchiveName, temp);
                     }
                     catch
                     {
@@ -103,7 +103,7 @@ namespace InventoryApp.Views
                             Quantity = difference > 0 ? difference : 0
                     };
                         ATViewModel.Archive.Add(temp);
-                        CollectionManager.Add(CollectionManager.ATArchiveName, temp);
+                        ATViewModel.Add(ATViewModel.ATArchiveName, temp);
                     }
                 }
                 this.DialogResult = true;
