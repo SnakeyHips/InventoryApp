@@ -1,23 +1,37 @@
-﻿using System;
+using System;
+using System.Linq;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.Data.SqlClient;
+using System.Windows;
+using System.Configuration;
 using InventoryApp.Model;
+using Dapper;
 
 namespace InventoryApp.ViewModel
 {
     public class PDSViewModel
     {
-        public PDSViewModel()
-        {
-            LoadInventory();
-            LoadArchive();
-            LoadStock();
-        }
-
+        public static string connString = ConfigurationManager.ConnectionStrings["InventoryDBConnectionString"].ConnectionString;
+        public static string PDSInventoryName = "PDSInventory";
+        public static string PDSArchiveName = "PDSArchive";
         public static ObservableCollection<Reagent> Inventory { get; set; }
         public static ObservableCollection<Reagent> InventoryStock { get; set; }
         public static ObservableCollection<Reagent> Archive { get; set; }
         public static ObservableCollection<Stock> Stocks { get; set; }
+        public static Reagent SelectedInventory { get; set; }
+        public static Stock SelectedStock { get; set; }
+
+        public PDSViewModel()
+        {
+            Inventory = new ObservableCollection<Reagent>();
+            InventoryStock = new ObservableCollection<Reagent>();
+            Archive = new ObservableCollection<Reagent>();
+            Stocks = new ObservableCollection<Stock>();
+            LoadInventory();
+            LoadArchive();
+            LoadStock();
+        }
 
         public static Dictionary<string, int> Reagents = new Dictionary<string, int> {
             { "C", 1 },
@@ -51,8 +65,7 @@ namespace InventoryApp.ViewModel
 
         public static void LoadInventory()
         {
-            Inventory = CollectionManager.Get(CollectionManager.PDSInventoryName);
-            InventoryStock = new ObservableCollection<Reagent>();
+            Inventory = Get(PDSInventoryName);
             foreach (Reagent r in Inventory)
             {
                 r.DateWarning = CheckExpiryDate(r.Expiry);
@@ -61,16 +74,28 @@ namespace InventoryApp.ViewModel
 
         public static void LoadArchive()
         {
-            Archive = CollectionManager.Get(CollectionManager.PDSArchiveName);
+            Archive = Get(PDSArchiveName);
             foreach (Reagent r in Archive)
             {
                 r.DateWarning = CheckExpiryDate(r.Expiry);
             }
         }
 
+        public static void LoadInventoryStock()
+        {
+            InventoryStock.Clear();
+            foreach (Reagent r in Inventory)
+            {
+                if (r.Name.Equals(SelectedStock.Name))
+                {
+                    InventoryStock.Add(r);
+                }
+            }
+        }
+
         public static void LoadStock()
         {
-            Stocks = new ObservableCollection<Stock>();
+            Stocks.Clear();
             foreach (KeyValuePair<string, int> kvp in Reagents)
             {
                 Stock temp = new Stock()
@@ -147,33 +172,80 @@ namespace InventoryApp.ViewModel
             }
         }
 
-        private static Reagent _selectedInventory;
-
-        public static Reagent SelectedInventory
+        //Retrieves List of Reagents from relevant table
+        public static ObservableCollection<Reagent> Get(string table)
         {
-            get
+            string query = "SELECT * FROM " + table;
+            using (SqlConnection conn = new SqlConnection(connString))
             {
-                return _selectedInventory;
-            }
+                try
+                {
+                    conn.Open();
+                    return new ObservableCollection<Reagent>(conn.Query<Reagent>(query).ToList());
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show(ex.ToString());
+                    return new ObservableCollection<Reagent>();
+                }
 
-            set
-            {
-                _selectedInventory = value;
             }
         }
 
-        private static Stock _selectedStock;
-
-        public static Stock SelectedStock
+        //Adds reagent item to table
+        public static void Add(string table, Reagent r)
         {
-            get
+            string query = "INSERT INTO " + table + " (Name, Supplier, Batch, Validated1, Validated2, Expiry, Quantity) " +
+                "VALUES (@Name, @Supplier, @Batch, @Validated1, @Validated2, @Expiry, @Quantity);";
+            using (SqlConnection conn = new SqlConnection(connString))
             {
-                return _selectedStock;
+                try
+                {
+                    conn.Open();
+                    conn.Execute(query, r);
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show(ex.ToString());
+                }
             }
+        }
 
-            set
+        //Updates reagent item in table
+        public static void Update(string table, Reagent r)
+        {
+            string query = "UPDATE " + table +
+                " SET Name=@Name, Supplier=@Supplier, Batch=@Batch, Validated1=@Validated1, Validated2=@Validated2, " +
+                "Expiry=@Expiry, Quantity=@Quantity WHERE Name=@Name AND Supplier=@Supplier AND Batch=@Batch;";
+            using (SqlConnection conn = new SqlConnection(connString))
             {
-                _selectedStock = value;
+                try
+                {
+                    conn.Open();
+                    conn.Execute(query, r);
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show(ex.ToString());
+                }
+            }
+        }
+
+        //Deletes reagent item from table
+        public static void Delete(string table, Reagent r)
+        {
+            string query = "DELETE FROM " + table + " WHERE Name=@Name AND Supplier=@Supplier AND Batch=@Batch;";
+            using (SqlConnection conn = new SqlConnection(connString))
+            {
+                try
+                {
+                    conn.Open();
+                    conn.Execute(query, r);
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show(ex.ToString());
+                }
             }
         }
     }
