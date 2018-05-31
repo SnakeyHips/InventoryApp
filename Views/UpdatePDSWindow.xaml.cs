@@ -73,7 +73,7 @@ namespace InventoryApp.Views
                 Selected.Quantity = int.Parse(txtQuantity.Text);
                 Selected.DateWarning = PDSViewModel.CheckExpiryDate(Selected.Expiry);
                 //Update with new object using copy method
-                CollectionManager.Update(CollectionManager.PDSInventoryName, Selected);
+                PDSViewModel.Update(PDSViewModel.PDSInventoryName, Selected);
                 after = int.Parse(txtQuantity.Text);
                 int difference = before - after;
                 PDSViewModel.UpdateStock(Selected.Name, -difference);
@@ -87,7 +87,7 @@ namespace InventoryApp.Views
                         Reagent temp = PDSViewModel.Archive.First(
                             x => x.Name == Selected.Name && x.Supplier == Selected.Supplier && x.Batch == Selected.Batch);
                         temp.Quantity += difference;
-                        CollectionManager.Update(CollectionManager.PDSArchiveName, temp);
+                        PDSViewModel.Update(PDSViewModel.PDSArchiveName, temp);
                     }
                     catch
                     {
@@ -103,7 +103,7 @@ namespace InventoryApp.Views
                             Quantity = difference > 0 ? difference : 0
                         };
                         PDSViewModel.Archive.Add(temp);
-                        CollectionManager.Add(CollectionManager.PDSArchiveName, temp);
+                        PDSViewModel.Add(PDSViewModel.PDSArchiveName, temp);
                     }
                 }
                 this.DialogResult = true;
