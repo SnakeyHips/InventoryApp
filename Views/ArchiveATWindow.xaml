@@ -9,8 +9,7 @@
         WindowStartupLocation="CenterScreen"
         Title="AT Archive" Height="600" Width="830">
     <Grid Margin="15,15,15,15">
-        <ListView Name="lstArchive" HorizontalAlignment="Left" Width="700" Margin="0,0,0,0" BorderThickness="1" BorderBrush="{DynamicResource AccentColorBrush}"
-                  ScrollViewer.HorizontalScrollBarVisibility="Hidden" SelectionMode="Single">
+        <ListView Name="lstArchive" HorizontalAlignment="Left" Width="700" Margin="0,0,0,0" BorderThickness="1" ScrollViewer.HorizontalScrollBarVisibility="Hidden" SelectionMode="Single" Style="{DynamicResource JakeListView}">
             <ListView.View>
                 <GridView>
                     <GridViewColumn Header="Reagent" Width="100" DisplayMemberBinding="{Binding Name}"/>
