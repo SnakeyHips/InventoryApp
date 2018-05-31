@@ -1,16 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Shapes;
 using MahApps.Metro.Controls;
 using MahApps.Metro;
 
@@ -23,31 +12,24 @@ namespace InventoryApp
             InitializeComponent();
         }
 
+        //TabControl selection handler for saving which tab was last selected and app accent
         private void TabControl_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            if (tabAT.IsSelected)
+            switch (tabsMain.SelectedIndex)
             {
-                ThemeManager.ChangeAppStyle(Application.Current,
-                ThemeManager.Accents.First(x => x.Name == "Crimson"),
-                ThemeManager.AppThemes.First(x => x.Name == "BaseLight"));
+                case 0:
+                    ThemeManager.ChangeAppStyle(Application.Current, ThemeManager.GetAccent("Crimson"), ThemeManager.GetAppTheme("BaseLight"));
+                    break;
+                case 1:
+                    ThemeManager.ChangeAppStyle(Application.Current, ThemeManager.GetAccent("Mauve"), ThemeManager.GetAppTheme("BaseLight"));
+                    break;
+                case 2:
+                    ThemeManager.ChangeAppStyle(Application.Current, ThemeManager.GetAccent("Olive"), ThemeManager.GetAppTheme("BaseLight"));
+                    break;
+                case 3:
+                    ThemeManager.ChangeAppStyle(Application.Current, ThemeManager.GetAccent("Sienna"), ThemeManager.GetAppTheme("BaseLight"));
+                    break;
             }
-            else if (tabPDS.IsSelected)
-            {
-                ThemeManager.ChangeAppStyle(Application.Current,
-                ThemeManager.Accents.First(x => x.Name == "Mauve"),
-                ThemeManager.AppThemes.First(x => x.Name == "BaseLight"));
-            }
-            else if (tabWTAIL.IsSelected)
-            {
-                ThemeManager.ChangeAppStyle(Application.Current,
-                ThemeManager.Accents.First(x => x.Name == "Olive"),
-                ThemeManager.AppThemes.First(x => x.Name == "BaseLight"));
-            }
-        }
-
-        private void btnHistory_Click(object sender, RoutedEventArgs e)
-        {
-            //history window here
         }
     }
 }
