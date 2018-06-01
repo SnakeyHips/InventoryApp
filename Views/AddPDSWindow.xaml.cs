@@ -72,6 +72,10 @@ namespace InventoryApp.Views
                 PDSViewModel.Add(PDSViewModel.PDSInventoryName, temp);
                 PDSViewModel.Inventory.Add(temp);
                 PDSViewModel.UpdateStock(temp.Name, temp.Quantity);
+                if (PDSViewModel.SelectedStock.Name.Equals(temp.Name))
+                {
+                    PDSViewModel.InventoryStock.Add(temp);
+                }
                 this.DialogResult = true;
             }
         }
