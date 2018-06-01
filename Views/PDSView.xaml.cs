@@ -4,7 +4,6 @@ using System.Linq;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
-using System.Collections.ObjectModel;
 using Microsoft.Win32;
 using InventoryApp.Model;
 using InventoryApp.ViewModel;
@@ -41,11 +40,6 @@ namespace InventoryApp.Views
             AddPDSWindow addPDSWindow = new AddPDSWindow();
             addPDSWindow.Owner = mainWindow;
             addPDSWindow.ShowDialog();
-            if (addPDSWindow.DialogResult == true)
-            {
-                lstStock.UnselectAll();
-                lstStock.SelectedValue = addPDSWindow.cboReagents.Text;
-            }
         }
 
         private void btnUpdate_Click(object sender, RoutedEventArgs e)
@@ -66,8 +60,8 @@ namespace InventoryApp.Views
                 {
                     PDSViewModel.Delete(PDSViewModel.PDSInventoryName, PDSViewModel.SelectedInventory);
                     PDSViewModel.Inventory.Remove(PDSViewModel.SelectedInventory);
+                    PDSViewModel.UpdateStock(PDSViewModel.SelectedInventory.Name, -PDSViewModel.SelectedInventory.Quantity);
                     PDSViewModel.InventoryStock.Remove(PDSViewModel.SelectedInventory);
-                    PDSViewModel.LoadStock();
                 }
             }
         }
