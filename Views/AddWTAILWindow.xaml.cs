@@ -72,6 +72,10 @@ namespace InventoryApp.Views
                 WTAILViewModel.Add(WTAILViewModel.WTAILInventoryName, temp);
                 WTAILViewModel.Inventory.Add(temp);
                 WTAILViewModel.UpdateStock(temp.Name, temp.Quantity);
+                if (WTAILViewModel.SelectedStock.Name.Equals(temp.Name))
+                {
+                    WTAILViewModel.InventoryStock.Add(temp);
+                }
                 this.DialogResult = true;
             }
         }
