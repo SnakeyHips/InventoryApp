@@ -40,11 +40,6 @@ namespace InventoryApp.Views
             AddATWindow addATWindow = new AddATWindow();
             addATWindow.Owner = mainWindow;
             addATWindow.ShowDialog();
-            if(addATWindow.DialogResult == true)
-            {
-                lstStock.UnselectAll();
-                lstStock.SelectedValue = addATWindow.cboReagents.Text;
-            }
         }
 
         private void btnUpdate_Click(object sender, RoutedEventArgs e)
@@ -65,8 +60,8 @@ namespace InventoryApp.Views
                 {
                     ATViewModel.Delete(ATViewModel.ATInventoryName, ATViewModel.SelectedInventory);
                     ATViewModel.Inventory.Remove(ATViewModel.SelectedInventory);
+                    ATViewModel.UpdateStock(ATViewModel.SelectedInventory.Name, -ATViewModel.SelectedInventory.Quantity);
                     ATViewModel.InventoryStock.Remove(ATViewModel.SelectedInventory);
-                    ATViewModel.LoadStock();
                 }
             }
         }
