@@ -2,7 +2,6 @@ using System;
 using System.Windows;
 using System.Windows.Input;
 using MahApps.Metro.Controls;
-using System.Linq;
 using System.Text.RegularExpressions;
 using MahApps.Metro.Controls.Dialogs;
 using InventoryApp.Model;
