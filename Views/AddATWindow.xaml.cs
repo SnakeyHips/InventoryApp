@@ -76,6 +76,10 @@ namespace InventoryApp.Views
                 ATViewModel.Add(ATViewModel.ATInventoryName, temp);
                 ATViewModel.Inventory.Add(temp);             
                 ATViewModel.UpdateStock(temp.Name, temp.Quantity);
+                if (ATViewModel.SelectedStock.Name.Equals(temp.Name))
+                {
+                    ATViewModel.InventoryStock.Add(temp);
+                }
                 this.DialogResult = true;
             }
         }
