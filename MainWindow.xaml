@@ -21,7 +21,7 @@
                 <views:WTAILView/>
             </TabItem>
         </TabControl>
-        <Viewbox HorizontalAlignment="Right" VerticalAlignment="Top" Width="75" Margin="0,90,0,0">
+        <Viewbox HorizontalAlignment="Right" VerticalAlignment="Top" Width="75" Margin="0,88,0,0">
             <Path Data="F 1 M 795,3551 C 494,3480 244,3285 110,3015 -29,2737 -36,2382 90,2102 157,1955 216,1882 877,1127 1544,366 1861,
                           10 1874,10 1881,10 1932,60 1986,122 2041,184 2224,392 2393,585 2563,777 2705,936 2708,937 2712,939 2899,730 3124,475
                           3381,183 3540,10 3549,12 3566,15 3709,176 4414,980 4957,1600 5162,1837 5217,1910 5308,2032 5379,2195 5405,2347 5422,
