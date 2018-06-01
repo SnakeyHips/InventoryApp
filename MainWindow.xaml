@@ -10,7 +10,7 @@
         WindowStartupLocation="CenterScreen"
         Title="Reagent Inventory" Height="500" Width="945">
     <Grid Margin="15,0,15,15">
-        <TabControl Name="tabsMain" SelectionChanged="TabControl_SelectionChanged" Padding="0">
+        <TabControl Name="tabsMain" SelectionChanged="TabControl_SelectionChanged" Padding="-1">
         <TabItem Header="AT">
             <views:ATView/>
         </TabItem>
