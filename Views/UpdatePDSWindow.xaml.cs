@@ -2,7 +2,6 @@ using System;
 using System.Windows;
 using System.Windows.Input;
 using MahApps.Metro.Controls;
-using System.Linq;
 using System.Text.RegularExpressions;
 using MahApps.Metro.Controls.Dialogs;
 using InventoryApp.Model;
@@ -82,14 +81,18 @@ namespace InventoryApp.Views
                 {
                     difference = before - after;
                     //Sees if already matching object in archive list
-                    try
+                    bool archive = false;
+                    foreach (Reagent r in PDSViewModel.Archive)
                     {
-                        Reagent temp = PDSViewModel.Archive.First(
-                            x => x.Name == Selected.Name && x.Supplier == Selected.Supplier && x.Batch == Selected.Batch);
-                        temp.Quantity += difference;
-                        PDSViewModel.Update(PDSViewModel.PDSArchiveName, temp);
+                        if (r.Name == Selected.Name && r.Supplier == Selected.Supplier && r.Batch == Selected.Batch)
+                        {
+                            r.Quantity += difference;
+                            PDSViewModel.Update(PDSViewModel.PDSArchiveName, r);
+                            archive = true;
+                            break;
+                        }
                     }
-                    catch
+                    if (!archive)
                     {
                         //If not, create new object in archive
                         Reagent temp = new Reagent()
