@@ -82,14 +82,18 @@ namespace InventoryApp.Views
                 {
                     difference = before - after;
                     //Sees if already matching object in archive list
-                    try
+                    bool archive = false;
+                    foreach(Reagent r in ATViewModel.Archive)
                     {
-                        Reagent temp = ATViewModel.Archive.First(
-                            x => x.Name == Selected.Name && x.Supplier == Selected.Supplier && x.Batch == Selected.Batch);
-                        temp.Quantity += difference;
-                        ATViewModel.Update(ATViewModel.ATArchiveName, temp);
+                        if(r.Name == Selected.Name && r.Supplier == Selected.Supplier && r.Batch == Selected.Batch)
+                        {
+                            r.Quantity += difference;
+                            ATViewModel.Update(ATViewModel.ATArchiveName, r);
+                            archive = true;
+                            break;
+                        }
                     }
-                    catch
+                    if(!archive)
                     {
                         //If not, create new object in archive
                         Reagent temp = new Reagent()
