@@ -4,7 +4,6 @@ using System.Linq;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
-using System.Collections.ObjectModel;
 using Microsoft.Win32;
 using InventoryApp.Model;
 using InventoryApp.ViewModel;
@@ -41,11 +40,6 @@ namespace InventoryApp.Views
             AddWTAILWindow addWTAILWindow = new AddWTAILWindow();
             addWTAILWindow.Owner = mainWindow;
             addWTAILWindow.ShowDialog();
-            if (addWTAILWindow.DialogResult == true)
-            {
-                lstStock.UnselectAll();
-                lstStock.SelectedValue = addWTAILWindow.cboReagents.Text;
-            }
         }
 
         private void btnUpdate_Click(object sender, RoutedEventArgs e)
@@ -66,8 +60,8 @@ namespace InventoryApp.Views
                 {
                     WTAILViewModel.Delete(WTAILViewModel.WTAILInventoryName, WTAILViewModel.SelectedInventory);
                     WTAILViewModel.Inventory.Remove(WTAILViewModel.SelectedInventory);
+                    WTAILViewModel.UpdateStock(WTAILViewModel.SelectedInventory.Name, -WTAILViewModel.SelectedInventory.Quantity);
                     WTAILViewModel.InventoryStock.Remove(WTAILViewModel.SelectedInventory);
-                    WTAILViewModel.LoadStock();
                 }
             }
         }
