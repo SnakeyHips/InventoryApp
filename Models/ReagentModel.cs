@@ -1,6 +1,6 @@
-﻿using System.ComponentModel;
+using System.ComponentModel;
 
-namespace InventoryApp.Model
+namespace InventoryApp.Models
 {
     public class ReagentModel
     {
