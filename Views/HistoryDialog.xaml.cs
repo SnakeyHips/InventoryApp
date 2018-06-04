@@ -1,6 +1,6 @@
 ﻿using System.Windows;
 using MahApps.Metro.Controls;
-using InventoryApp.Model;
+using InventoryApp.Models;
 
 namespace InventoryApp.Views
 {
