@@ -5,10 +5,10 @@ using System.Collections.ObjectModel;
 using System.Data.SqlClient;
 using System.Windows;
 using System.Configuration;
-using InventoryApp.Model;
+using InventoryApp.Models;
 using Dapper;
 
-namespace InventoryApp.ViewModel
+namespace InventoryApp.ViewModels
 {
     public class WTAILViewModel
     {
