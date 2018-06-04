@@ -5,8 +5,8 @@ using System.Windows.Input;
 using MahApps.Metro.Controls;
 using System.Text.RegularExpressions;
 using MahApps.Metro.Controls.Dialogs;
-using InventoryApp.Model;
-using InventoryApp.ViewModel;
+using InventoryApp.Models;
+using InventoryApp.ViewModels;
 using System.Windows.Controls;
 
 namespace InventoryApp.Views
